@@ -189,62 +189,64 @@ select * from sales where city is null;
 -- Q31. [NULL – IS NULL]
 -- Find all rows where price IS NULL.
 -- Your answer :
-
+select * from sales where price is null;
 
 -- Q32. [NULL – IS NULL]
 -- Find all rows where product IS NULL.
 -- Your answer :
-
+select * from sales where product is null;
 
 -- Q33. [NULL – IS NULL]
 -- Find all rows where order_date IS NULL.
 -- Your answer :
-
+select * from sales where order_date is null;
 
 -- Q34. [NULL – IS NULL]
 -- Find all rows where quantity IS NULL.
 -- Your answer :
-
+select * from sales  where quantity is null;
+select * from sales;
 
 -- Q35. [NULL – IS NOT NULL]
 -- Find all rows where customer_name IS NOT NULL.
 -- Your answer :
-
+select * from sales where customer_name is null;
 
 -- Q36. [NULL – IS NOT NULL]
 -- Find all rows where city IS NOT NULL and price IS NOT NULL.
 -- Your answer :
+select * from sales where city is not null and price is not null;
 
 
 -- Q37. [NULL – IS NULL + OR]
 -- Find rows where customer_name IS NULL OR city IS NULL.
 -- Your answer :
-
+select * from sales where customer_name is null or city is null;
 
 -- Q38. [NULL – IS NULL + AND]
 -- Find rows where price IS NULL AND product IS NULL.
 -- Your answer :
-
+select * from sales where price is null and product is null;
 
 -- Q39. [NULL – COUNT]
 -- Count how many rows have NULL in the city column.
 -- Your answer :
-
+select count(*) from sales where city is null;
 
 -- Q40. [NULL – COUNT]
 -- Count how many rows have NULL in the customer_name column.
 -- Your answer :
-
+select count(*) from sales where customer_name is null;
 
 -- Q41. [NULL – IS NULL]
 -- Find rows where order_date IS NULL. Order by order_id. Limit 5.
 -- Your answer :
-
+select * from sales where order_date is null order by order_id limit 5;
 
 -- Q42. [NULL – IS NOT NULL]
 -- Find rows where all columns (customer_name, city, price, product) are NOT NULL.
 -- Your answer :
-
+select * from sales where customer_name is not null and city is not null and price is not null and product is not null;
 
 
 -- ── ISNULL / IFNULL / COALESCE  (Q43–Q52)  ─────────────────────
@@ -252,42 +254,43 @@ select * from sales where city is null;
 -- Q43. [ISNULL]
 -- Show all rows with a column showing 1 or 0 whether customer_name is NULL (use ISNULL).
 -- Your answer :
-
+select isnull(customer_name) from sales ;
 
 -- Q44. [ISNULL]
 -- Show all rows with a column showing whether price is NULL using ISNULL. Filter only NULL price rows.
 -- Your answer :
-
+select isnull(price) from sales;
 
 -- Q45. [IFNULL]
 -- Replace NULL customer_name with 'Guest' and show all rows.
 -- Your answer :
+select ifnull(customer_name,"Guest") from sales;
+select * from sales;
 
 
 -- Q46. [IFNULL]
 -- Replace NULL city with 'Not Available'. Show rows where price > 20000.
 -- Your answer :
-
+select ifnull(city, "Not Available") from sales where price > 20000;
 
 -- Q47. [IFNULL]
 -- Replace NULL price with 0. Show total price per product using SUM. Order by total DESC.
 -- Your answer :
-
+select sum(ifnull(price,0)) as total from sales group by product order by total desc;
 
 -- Q48. [IFNULL]
 -- Replace NULL quantity with 1. Show rows where product = 'Laptop'.
 -- Your answer :
-
-
+select * from sales;
 -- Q49. [COALESCE]
 -- Use COALESCE to show first non-NULL from customer_name, product, city, 'Unknown'.
 -- Your answer :
-
+select coalesce(customer_name, product, city, "Unknown") from sales;
 
 -- Q50. [COALESCE]
 -- Use COALESCE to fill NULL price with 0. Find average price per city. Show only avg > 15000.
 -- Your answer :
-
+select avg(coalesce(price,0)), city as avrg from sales group by city having avrg > 15000;
 
 -- Q51. [COALESCE]
 -- Use COALESCE to fill NULL city with 'Unknown'. Group by city. Count orders per city. Order DESC.
