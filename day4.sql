@@ -296,7 +296,8 @@ select avg(coalesce(price,0)), city as avrg from sales group by city having avrg
 -- Use COALESCE to fill NULL city with 'Unknown'. Group by city. Count orders per city. Order DESC.
 -- Your answer :
 
-
+select * from sales;
+select count(ifnull(city, "Unknown")) as total from sales group by city order by city desc;
 -- Q52. [COALESCE]
 -- Show COALESCE(customer_name, product, 'N/A') where product LIKE 'M%'. Limit 5 Offset 1.
 -- Your answer :
